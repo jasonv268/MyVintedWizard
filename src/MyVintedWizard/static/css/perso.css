@@ -1,0 +1,18 @@
+label{
+color: orange;
+display: flex;
+align-items: center;
+margin-bottom: 3%;
+}
+
+.form-select{
+margin-left: 2%;
+margin-right: 2%;
+width: 10%;
+}
+
+.form-control{
+margin-left: 2%;
+margin-right: 2%;
+width: 50%;
+}

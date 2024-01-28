@@ -1,0 +1,64 @@
+{% load static %}
+<div class="card mb-4">
+    <div class="card-header">
+        <svg class="svg-inline--fa fa-table me-1" aria-hidden="true" focusable="false" data-prefix="fas"
+             data-icon="table" role="img" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" data-fa-i2svg="">
+            <path fill="currentColor"
+                  d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"></path>
+        </svg><!-- <i class="fas fa-table me-1"></i> Font Awesome fontawesome.com -->
+        Groups
+    </div>
+    <div class="card-body">
+        <div class="datatable-loading no-footer sortable searchable fixed-columns">
+
+            <div class="datatable-container">
+                <table class="datatable-table" id="table">
+
+                    <thead>
+                    <tr>
+                        <th data-sortable="true" style="width: 15%">
+                            <a href="#" class="datatable-sorter">Group Name</a>
+                        </th>
+                        <th data-sortable="true" style="width: 85%">
+                            <a href="#" class="datatable-sorter">Filters</a>
+                        </th>
+                    </tr>
+                    </thead>
+                    {% for group in groups %}
+                    <tr data-index="0">
+                        <td>{{ group.name }}
+                            <p><a href="{% url 'stats_manager-group' group.id %}">Get Stats</a></p>
+                        </td>
+                        <td>
+                            {% for f in group.filters.all %}
+                            {{ f }}
+                            {% endfor %}
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block js %}
+<!--<link>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>-->
+<!--<script>-->
+<!--    let table = new DataTable('#datatablesSimple');-->
+<!--</script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">-->
+<!--        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">-->
+<script src="https://code.jquery.com/jquery-3.7.0.js">
+</script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js">
+</script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js">
+</script>
+<!-- <script src="{% static 'js/perso.js'%}" ></script>-->
+
+{%endblock js %}
