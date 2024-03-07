@@ -25,7 +25,7 @@ def add_dataframe(scraped_data: pd.DataFrame, request_id):
     if not os.path.exists(current_path):
         os.makedirs(current_path, exist_ok=False)
 
-    date = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+    date = datetime.today().strftime('%Y-%m-%d %Hh%Mmin%Ssec')
     scraped_data["scrap_date"] = date
 
     scraped_data.dropna(inplace=True)
@@ -44,10 +44,6 @@ def add_dataframe(scraped_data: pd.DataFrame, request_id):
         logger.info(f"Saver : Enregistrement des données par concaténation dans un fichier existant")
 
         print("PREVIOUS", previous_data)
-
-        # data_to_filter = pd.concat([scraped_data, previous_data], axis=0, ignore_index=True)
-        #
-        # new_data = data_to_filter.drop_duplicates(subset=['id'], keep=False, ignore_index=True)
 
         scraped_data_minus_previous = scraped_data[~scraped_data['id'].isin(previous_data['id'])]
 
@@ -127,7 +123,7 @@ def get_date(ide) -> str:
     try:
         files = os.listdir(save_path / str(ide))
         for file in files:
-            return str(file.replace(".csv", ""))
+            return str(file.replace(".csv", "").replace("_", ""))
         return "Not Scraped"
 
     except FileNotFoundError:
