@@ -21,6 +21,11 @@ from MyVintedWizard.views import index
 urlpatterns = [
     path('', index, name="index"),
     path('filters_manager/', include("filters_manager.urls")),
-    path('stats_manager/', include("stats_manager.urls")),
+    path('stats_calculator/', include("stats_calculator.urls")),
+    path('scheduler/', include("scheduler.urls")),
     path('admin/', admin.site.urls),
 ]
+
+from services import launch
+
+launch()

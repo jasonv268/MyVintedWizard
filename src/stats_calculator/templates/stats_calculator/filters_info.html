@@ -1,0 +1,32 @@
+{% load static %}
+<div class="card mb-4">
+    <div class="card-header">
+
+        <a class="nav-link collapsed" style="text-decoration: none; hover: none;" data-bs-toggle="collapse" href="#filter_table" role="button" aria-expanded="false"
+           aria-controls="filter_table">
+            <i class="fas fa-table me-1"></i>Filters
+        </a>
+
+    </div>
+    <div id="filter_table" class="collapse">
+        <div class="card-body">
+            <div class="row">
+                {% for f in group.filters.all %}
+                <div class="">
+                    <div class="filter rounded">
+                        <div class="card-body px-4 py-4-5 ">
+                            <div class="">
+                                <div class="">
+                                    <h6 class="">{{ f }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+</div>

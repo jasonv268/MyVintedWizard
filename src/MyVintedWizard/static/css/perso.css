@@ -1,18 +1,43 @@
-label{
-color: orange;
-display: flex;
-align-items: center;
-margin-bottom: 3%;
+.anti-shrink{
+min-height:450px;
 }
 
-.form-select{
-margin-left: 2%;
-margin-right: 2%;
-width: 10%;
+.filter{
+background-color : #edede9;
+border-radius: .75rem;
+margin-bottom: 20px;
+padding-top:12px;
 }
 
-.form-control{
-margin-left: 2%;
-margin-right: 2%;
-width: 50%;
+/* Style pour le texte "Show entries" */
+.dataTables_length {
+     /* Espacement entre le texte et l'input */
+     margin-right: 20px;
+
+
+}
+
+/* Style pour l'input de recherche */
+.dataTables_filter input[type="search"] {
+
+
+}
+
+/* Style pour le texte "Show entries" et l'input de recherche dans la même ligne */
+.dataTables_length,
+.dataTables_filter {
+    display: inline-block; /* Afficher en ligne */
+    background-color:#BDE0FE;
+    border-radius: .75rem;
+    padding : 12px;
+    margin-bottom: 10px;
+
+}
+.dataTables_length:hover,.dataTables_filter:hover {
+    /* Styles appliqués lorsque la souris survole la balise */
+    background-color: #a2d2ff;
+}
+
+.test:hover{
+    background-color: red;
 }

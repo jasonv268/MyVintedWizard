@@ -8,33 +8,59 @@
         </svg><!-- <i class="fas fa-table me-1"></i> Font Awesome fontawesome.com -->
         Groups
     </div>
+    <div>
+
+    </div>
     <div class="card-body">
-        <div class="datatable-loading no-footer sortable searchable fixed-columns">
+
+        <div class="datatable datatable-loading no-footer sortable searchable fixed-columns">
 
             <div class="datatable-container">
-                <table class="datatable-table" id="table">
-
+                <table class="" id="table1">
                     <thead>
                     <tr>
                         <th data-sortable="true" style="width: 15%">
-                            <a href="#" class="datatable-sorter">Group Name</a>
+                            <!--                            <a href="#" class="datatable-sorter">Group Name</a>-->
                         </th>
                         <th data-sortable="true" style="width: 85%">
-                            <a href="#" class="datatable-sorter">Filters</a>
+                            <!--                            <a href="#" class="datatable-sorter">Filters</a>-->
                         </th>
                     </tr>
                     </thead>
                     {% for group in groups %}
+
                     <tr data-index="0">
-                        <td>{{ group.name }}
-                            <p><a href="{% url 'stats_manager-group' group.id %}">Get Stats</a></p>
+                        <td>
+                            <div class="row">
+                                <div class="col shadow-lg p-3 mb-5 rounded hover-effect">
+
+                                    <a href="{% url 'stats_calculator-group' group.id %}">
+                                        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16"
+                                                 height="16"
+                                                 fill="currentColor">
+                                                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                <path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/>
+                                            </svg>
+
+                                        </div>
+                                    </a>
+                                    <p>{{ group.name }}</p>
+
+                                </div>
+                            </div>
                         </td>
                         <td>
-                            {% for f in group.filters.all %}
-                            {{ f }}
-                            {% endfor %}
+                            <div class="filter row">
+                                {% for f in group.filters.all %}
+                                <div class="">
+                                    <div class="rounded hover-effect">
+                                            <h6 class="">{{ f }}</h6>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
                         </td>
-
                     </tr>
                     {% endfor %}
                 </table>
@@ -44,21 +70,11 @@
 </div>
 
 {% block js %}
-<!--<link>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>-->
-<!--<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>-->
-<!--<script>-->
-<!--    let table = new DataTable('#datatablesSimple');-->
-<!--</script>-->
-
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">-->
-<!--        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">-->
 <script src="https://code.jquery.com/jquery-3.7.0.js">
 </script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js">
 </script>
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js">
 </script>
-<!-- <script src="{% static 'js/perso.js'%}" ></script>-->
 
 {%endblock js %}

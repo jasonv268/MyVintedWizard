@@ -1,3 +1,2 @@
-from .article import Article
-from .filter import Filter
-from .group import Group
+from filters_manager.models.filter import Filter
+from filters_manager.models.group import Group

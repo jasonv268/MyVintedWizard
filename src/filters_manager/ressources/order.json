@@ -1,0 +1,6 @@
+{
+  "NEWEST": "newest_first",
+  "RELEVANCE": "relevance",
+  "LOWTOHIGH": "price_low_to_high",
+  "HIGHTOLOW": "price_high_to_low"
+}

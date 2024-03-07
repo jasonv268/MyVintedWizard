@@ -10,16 +10,28 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent  # /src
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path="../.config")
+
+from loguru import logger
+
+logger.remove()
+logger.add(sys.stderr, level="DEBUG")
+logger.add("../logs/debug.log", level="DEBUG", rotation="1 MB")
+logger.add("../logs/info.log", level="INFO", rotation="1 MB")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7p5!!&)2^ehpiqkxcgc)(y^+sipggic1+41v8)-q+kpmxq&bmo'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,15 +40,20 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [  # AJOUTER DES APPLICATIONS
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'discord_manager',
     'filters_manager',
-    'stats_manager'
+    'notifier',
+    'requests_manager',
+    'scheduler',
+    'scraper',
+    'stats_calculator',
 ]
 
 MIDDLEWARE = [
@@ -120,11 +137,3 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'cache_table',
-        'TIMEOUT': None
-    }
-}
