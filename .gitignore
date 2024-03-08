@@ -161,4 +161,5 @@ cython_debug/
 .config
 logs/
 src/scraper/ressources/
+src/requests_manager/tasks/config.json
 
