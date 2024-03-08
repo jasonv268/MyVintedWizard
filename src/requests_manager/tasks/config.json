@@ -1,9 +1,9 @@
 {
     "init_time": 1709638785.2399101,
-    "total_scrap": 2,
-    "total_scrap_o": 5486429,
-    "current_delta_init_time": 1709837191.9445927,
-    "current_delta_requests_number": 2,
+    "total_scrap": 15,
+    "total_scrap_o": 0,
+    "current_delta_init_time": 1709893126.8463283,
+    "current_delta_requests_number": 1,
     "requests_number": 2,
     "delta_duration": 20
 }

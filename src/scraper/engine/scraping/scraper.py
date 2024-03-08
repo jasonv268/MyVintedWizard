@@ -60,7 +60,7 @@ class Scraper:
 
         try:
             page = browser.new_page()
-            page.route("**/*", route_intercept)
+            #page.route("**/*", route_intercept)
             logger.debug("WebDriver : attend que la page soit chargée")
             page.goto(url, timeout=30000)
             page.wait_for_selector('.feed-grid')
