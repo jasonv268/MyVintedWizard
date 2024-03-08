@@ -68,6 +68,7 @@ class RequestsManager:
             while len(self.queue) > 0:
 
                 if helper.requests_if_possible(self):
+                    self.save_config()
                     logger.debug(f"Requests Manager : requete effectuée")
 
                 else:
