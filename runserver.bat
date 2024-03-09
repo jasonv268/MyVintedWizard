@@ -31,15 +31,6 @@ if exist .config (
 
 cd src
 
-if exist db.sqlite3 (
-    echo Le fichier db.sqlite3 est présent.
-) else (
-    echo Le fichier .config est manquant. Arrêt du script.
-    pause > nul
-    exit /b 1
-)
-
-
 start python manage.py runserver --noreload
 ping localhost -n 2 > nul
 start http://127.0.0.1:8000/
