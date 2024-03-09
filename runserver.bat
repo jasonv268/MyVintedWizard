@@ -1,5 +1,7 @@
 @echo off
 
+git pull
+
 set "VENV_DIR=venv"
 set "REQUIREMENTS_FILE=requirements.txt"
 
