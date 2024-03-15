@@ -34,7 +34,7 @@ logger.add("../logs/info.log", level="INFO", rotation="1 MB")
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", "192.168.1.43"]
 
