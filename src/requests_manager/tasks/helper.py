@@ -16,15 +16,26 @@ def requests_if_possible(request_manager):
             'requests_number'):
         logger.debug("Traitement de la requete")
 
-        group, pages_number = request_manager.queue.pop(0)
-        # logger.info(f"Requete autorisée : groupe {group.name}")
+        request = request_manager.queue.pop(0)
 
-        urls = group.get_all_urls()
         wait_time = random.randint(2, 8)
         logger.info(f"Requests Manager : met du délai aléatoire ({wait_time}) avant de faire la requete")
         time.sleep(wait_time)
-        size = scraper.start_scraping(urls, pages_number)
-        request_manager.config_dict['total_scrap_o'] += size
+
+        group, pages_number = request.get_group(), request.get_nb_pages()
+
+        size_o, urls = 0, [None]
+
+        try:
+
+            urls = group.get_all_urls()
+
+            size_o = scraper.start_scraping(urls, pages_number)
+
+        except Exception as e:
+            logger.error(f"Requests Manager -> Scraper: Erreur lors du scraping : {e}")
+
+        request_manager.config_dict['total_scrap_o'] += size_o
         request_manager.config_dict['total_scrap'] = request_manager.config_dict.get('total_scrap') + len(
             urls) * pages_number
         request_manager.config_dict['current_delta_requests_number'] += len(urls) * pages_number

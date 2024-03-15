@@ -14,7 +14,7 @@ def index(request):
 
     requestsmg.init(2, 20)
 
-    return render(request, "stats_calculator/stats_manager.html",
+    return render(request, "stats_calculator/index.html",
                   context={"groups": groups})
 
 

@@ -16,6 +16,12 @@ Including another URLconf
 """
 from django.shortcuts import render
 
+# Add support for multi-line template tags
+import re
+from django.template import base as template_base
+template_base.tag_re = re.compile(template_base.tag_re.pattern, re.DOTALL)
+# end
+
 
 def index(request):
     return render(request, "MyVintedWizard/index.html", context={})

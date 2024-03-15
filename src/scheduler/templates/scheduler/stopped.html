@@ -1,18 +1,15 @@
 {% load static %}
-<div id="button" class="feature bg-danger col shadow-lg p-3 mb-5 rounded hover-effect">
-    <div hx-post="{% url 'scheduler-stop_launch'  %}"
-         hx-target="#button" hx-swap="outerHTML">
-        <div class="svg-div feature-icon-small d-inline-flex align-items-center justify-content-center
-                     text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32"
-                 fill="currentColor">
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9V168c0-8.7 4.7-16.7 12.3-20.9z"/>
-            </svg>
-        </div>
-        <h4 class="fw-semibold mb-0 text-body-emphasis">Launch Scheduled</h4>
-    </div>
-    <div class="">
-        <p class="text-body-secondary">Scheduled tasks are stopped</p>
-    </div>
-</div>
+<a
+        class="block rounded-xl bg-danger border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+        hx-post="{% url 'scheduler-stop_launch'  %}"
+        hx-swap="outerHTML"
+        href=""
+>
+    <i class="fa-regular fa-circle-play fa-3x"></i>
+
+    <h2 class="mt-4 text-xl font-bold">Launch Scheduled</h2>
+
+    <p class="mt-1 text-sm text-gray-300">
+        Scheduled tasks are stopped
+    </p>
+</a>

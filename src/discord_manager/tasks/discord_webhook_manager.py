@@ -9,13 +9,25 @@ import discord
 from notifier.utils.Notif import Notif
 
 
+class DiscordWebHookManager:
+    def __init__(self):
+        self.webhooks: list[DiscordWebHook] = []
+
+    def add_web_hook(self, channel_url):
+        webhook = DiscordWebHook(channel_url)
+        self.webhooks.append(webhook)
+        return webhook
+
+    def stop_all(self):
+        for webhook in self.webhooks:
+            webhook.stop_sender()
+
+
 class DiscordWebHook:
 
     def __init__(self, channel_url):
-        self.channel_url = channel_url
         self.webhook = discord.SyncWebhook.from_url(channel_url)
         self.queue = []
-        # self.working = False
         self.notify_event = threading.Event()
         self.stop_event = threading.Event()
         self.stop_event.set()
@@ -38,7 +50,7 @@ class DiscordWebHook:
         logger.info(f"WEBHOOK: stop flag envoyé au sender")
         if not self.stop_event.is_set():
             self.stop_event.set()
-            #self.thread.join()
+            self.notify_event.set()
             logger.info(f"WEBHOOK: sender arreté")
 
     def sender(self):
@@ -69,4 +81,4 @@ class DiscordWebHook:
             self.notify_event.clear()
 
 
-discordwh = DiscordWebHook(os.getenv("WEBHOOK"))
+discordmg = DiscordWebHookManager()

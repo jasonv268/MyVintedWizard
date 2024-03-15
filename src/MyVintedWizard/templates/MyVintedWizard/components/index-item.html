@@ -1,0 +1,13 @@
+{% url url as url %}
+<a
+        class="block rounded-xl border bg-purple-200 dark:bg-purple-800 border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+        href="{{ url }}"
+>
+   <i class=" {{ iclass }}"></i>
+
+    <h2 class="mt-4 text-xl font-bold">{{name}}</h2>
+
+    <p class="mt-1 text-sm text-gray-300">
+        {{description}}
+    </p>
+</a>

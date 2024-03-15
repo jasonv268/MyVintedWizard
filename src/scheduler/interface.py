@@ -43,10 +43,27 @@ def is_running():
         Exception: En cas d'échec de l'arrêt des tâches planifiées.
 
     Returns:
-        None
+        True si le scheduler est actif
     """
     try:
         return schedulermg.is_running()
+    except Exception as e:
+        # Gérer l'exception
+        raise Exception("Une erreur s'est produite lors de la demande : {}".format(str(e)))
+
+
+def get_running_tasks():
+    """
+    Retourne les tâches planifiées.
+
+    Raises:
+        Exception: .
+
+    Returns:
+        La liste des taches planifiées
+    """
+    try:
+        return schedulermg.get_running_tasks()
     except Exception as e:
         # Gérer l'exception
         raise Exception("Une erreur s'est produite lors de la demande : {}".format(str(e)))

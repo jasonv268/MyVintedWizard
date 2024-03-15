@@ -1,0 +1,30 @@
+{% for value, name, date in graphs.values %}
+{% with forloop.counter as counter %}
+<div class="col-span-12" x-data="{ expanded: true }">
+    <div class="col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5">
+        <div>
+
+            <a
+                    class="inline-flex items-center justify-center mb-5 gap-2.5 rounded-full bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                    @click="expanded = ! expanded"
+                    href="#">
+                    <span>
+                      <i class="fa-regular fa-eye"></i>
+                    </span>
+                {{name}}
+            </a>
+
+
+        </div>
+        <div class="anti-shrink" x-show="expanded" x-collapse>
+            {% autoescape off %}
+            {{ value|safe }}
+            {% endautoescape %}
+            <div class="card-footer small text-muted">Last update : {{ date }}</div>
+        </div>
+
+    </div>
+
+</div>
+{% endwith %}
+{% endfor %}

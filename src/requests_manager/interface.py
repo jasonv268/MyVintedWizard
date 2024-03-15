@@ -1,4 +1,5 @@
 from requests_manager.tasks.requests_manager import requestsmg
+from requests_manager.tasks.Request import Request
 
 
 def launch():
@@ -74,6 +75,25 @@ def ask_for_request(request):
     """
     try:
         requestsmg.ask_for_request(request)
+    except Exception as e:
+        # Gérer l'exception
+        raise Exception("Une erreur s'est produite lors de l'envoi de la demande de requête : {}".format(str(e)))
+
+
+def create_request(group, nb_pages):
+    """
+       Crée une requete instance de la classe Requete.
+
+       Args:
+           group (django.db.group) : Le groupe de la base de donnée contenant les filtres sur lequel on va scraper
+           nb_pages (int) : Le nombre de page que l'on va scraper par filtre
+       """
+    if group is None:
+        raise ValueError("Le groupe n'est pas défini ou n'existe pas dans la base de donnée")
+    if nb_pages < 0:
+        raise ValueError("Le nombre de pages ne peut pas etre négatif")
+    try:
+        return Request(group, nb_pages)
     except Exception as e:
         # Gérer l'exception
         raise Exception("Une erreur s'est produite lors de l'envoi de la demande de requête : {}".format(str(e)))

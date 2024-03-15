@@ -1,0 +1,56 @@
+{% extends 'MyVintedWizard/base.html' %}
+{% load static %}
+{% block content %}
+<div class="mx-auto mb-80 max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+    <!-- Breadcrumb Start -->
+    <div
+            class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+    >
+        <h2 class="text-title-md2 font-bold text-black dark:text-white">
+            Schedule
+        </h2>
+
+        <nav>
+            <ol class="flex items-center gap-2">
+                <li>
+                    <a class="font-medium" href="index.html">MENU /</a>
+                </li>
+                <li class="font-medium text-primary">Scheduler</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- Breadcrumb End -->
+    <form method="POST" action="{% url 'scheduler-stop_launch' %}">
+        {% csrf_token %}
+        <div class="container-fluid">
+            <div class="row g-4 row-cols-1 row-cols-lg-5">
+                <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {% if is_running %}
+                    {% include 'scheduler/launched.html' %}
+                    {% else %}
+                    {% include 'scheduler/stopped.html' %}
+                    {% endif %}
+                    <a
+                            class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+                            href="{% url 'admin:app_list' 'scheduler' %}"
+                    >
+                        <i class="fa-solid fa-screwdriver-wrench fa-3x"></i>
+
+                        <h2 class="mt-4 text-xl font-bold">Manage</h2>
+
+                        <p class="mt-1 text-sm text-gray-300">
+                            Create, update and delete schedulers
+                        </p>
+                    </a>
+                </div>
+                <!-- ====== Table Section Start -->
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}
+

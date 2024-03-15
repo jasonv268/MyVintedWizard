@@ -7,6 +7,8 @@ from django.utils.safestring import mark_safe
 class Notifier(models.Model):
     name = models.CharField(max_length=60)
 
+    webhook_url = models.CharField(max_length=180)
+
     price_min = models.FloatField(validators=[MinValueValidator(0)], blank=True, null=True)
     price_max = models.FloatField(validators=[MinValueValidator(0)], blank=True, null=True)
 

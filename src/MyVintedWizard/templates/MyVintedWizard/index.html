@@ -2,58 +2,59 @@
 {% load static %}
 {% block content %}
 
-<div class="container-fluid px-4">
-    <h1 class="mt-4">My Vinted Wizard V2</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">V2</li>
-    </ol>
-    <!-- -------- START Features w/ icons and text on left & gradient title and text on right -------- -->
-    <main>
-        <div class="container-fluid">
-            <div class="row g-4 row-cols-1 row-cols-lg-3">
-                <div class="feature col shadow-lg p-3 mb-5 rounded hover-effect" onclick="location.href={% url 'filters_manager-index' %};"
-                >
-                    <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                             viewBox="0 0 512 512">
-                            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                            <path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/>
-                        </svg>
-                    </div>
-                    <h4 class="fs-2 text-body-emphasis">Filters Manager</h4>
-                    <p>Create filters and groups on articles</p>
+<section class="bg-gray-900 text-black mb-80 dark:text-white">
+    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+        <div class="mx-auto max-w-lg text-center">
+            <h2 class="text-3xl font-bold sm:text-4xl">Go further with e-commerce</h2>
 
-                </div>
-
-                <div class="feature col shadow-lg p-3 mb-5 rounded hover-effect"
-                     onclick="location.href={% url 'stats_calculator-index' %};">
-                    <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32"
-                             fill="currentColor">
-                            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                            <path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/>
-                        </svg>
-                    </div>
-                    <h4 class="fs-2 text-body-emphasis">Stats Manager</h4>
-                    <p>Get stats on your groups</p>
-                </div>
-
-                <div class="feature col shadow-lg p-3 mb-5 rounded hover-effect"
-                     onclick="location.href={% url 'scheduler-index' %};">
-                    <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32" fill="currentColor">
-                            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                            <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
-                        </svg>
-                    </div>
-                    <h4 class="fs-2 text-body-emphasis">Scheduler</h4>
-                    <p>Schedule scrap on different groups</p>
-                </div>
-            </div>
+            <p class="mt-4 text-gray-300">
+                Analyze the market, notify good deals.
+            </p>
         </div>
 
-        <!-- -------- END Features w/ icons and text on left & gradient title and text on right -------- -->
+        <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-    </main>
-</div>
+            {% include 'MyVintedWizard/components/index-item.html' with name="Stats"
+            description="Get stats on your groups"
+            url="stats_calculator-index"
+            iclass="fa-solid fa-chart-line fa-2xl" %}
+
+            {% include 'MyVintedWizard/components/index-item.html' with name="Schedule"
+            description="Schedule scrap on different groups"
+            url="scheduler-index"
+            iclass="fa-regular fa-clock fa-2xl" %}
+
+            {% include 'MyVintedWizard/components/index-item-outurl.html' with name="Discord notifications"
+            description="The discord server to see notifications"
+            url="https://discord.com/channels/1216318846986620968/"
+            iclass="fa-brands fa-discord fa-2xl" %}
+
+            {% include 'MyVintedWizard/components/index-item-outurl.html' with name="Google Sheet"
+            description="The sheet with the sells recap"
+            url="https://docs.google.com/spreadsheets/d/12Wzz-c5qGBooU5RMi2ou_IE8NUURpAJudVHeuQ7bPVE/edit#gid=0"
+            iclass="fa-solid fa-table-cells fa-2xl" %}
+
+            {% include 'MyVintedWizard/components/index-item-outurl.html' with name="Mise en ligne"
+            description=""
+            url="https://docs.google.com/forms/d/e/1FAIpQLSfvd78leBsjW-yGPDddEsjAwlmucxvdJWpeFN_TTkiJOpg9lQ/viewform"
+            iclass="fa-brands fa-wpforms fa-2xl" %}
+
+            {% include 'MyVintedWizard/components/index-item-outurl.html' with name="Depense"
+            description=""
+            url="https://docs.google.com/forms/d/e/1FAIpQLScU-JrSoWq534qkdjKB8YqeXB2yExujQDm2HKnL5sZjprtAiw/viewform"
+            iclass="fa-brands fa-wpforms fa-2xl" %}
+            {% include 'MyVintedWizard/components/index-item-outurl.html' with name="Database web site"
+            description=""
+            url="https://cockroachlabs.cloud/cluster/f0efb582-7705-411d-a8ba-da48e9fbd3e1/overview"
+            iclass="fa-solid fa-database fa-2xl" %}
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
 {% endblock %}

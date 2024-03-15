@@ -7,6 +7,8 @@ from django.test import TestCase
 
 from scraper.engine.files_manager import saver
 
+import services
+
 # Create your tests here.
 save_path = Path("scraper/tests_data/")
 
@@ -14,6 +16,7 @@ save_path = Path("scraper/tests_data/")
 class FilesManagerTest(TestCase):
 
     def setUp(self):
+        services.launch()
         saver.save_path = save_path
         try:
             os.mkdir(save_path)
@@ -25,10 +28,19 @@ class FilesManagerTest(TestCase):
                     os.remove(save_path / dirs / files)
 
     def tearDown(self):
-        pass
+        services.stop()
         for dirs in os.listdir(save_path):
             for files in os.listdir(save_path / dirs):
                 os.remove(save_path / dirs / files)
+
+    @staticmethod
+    def createFilter():
+
+        from filters_manager.models import Filter
+
+        filter = Filter.objects.create(name="FTest", search_text="test")
+
+        return filter
 
     def test_1(self):
         data = [
@@ -70,9 +82,11 @@ class FilesManagerTest(TestCase):
             }]
         df1 = pd.DataFrame(data)
 
-        saver.add_dataframe(df1, -1)
+        filter = self.createFilter()
 
-        self.assertEqual(len(saver.load_first_dataframe(-1)), 3)
+        saver.add_dataframe(df1, filter.id)
+
+        self.assertEqual(len(saver.load_first_dataframe(filter.id)), 3)
 
         data = [
             {
@@ -92,9 +106,9 @@ class FilesManagerTest(TestCase):
         df2 = pd.DataFrame(data)
 
         time.sleep(2)
-        saver.add_dataframe(df2, -1)
+        saver.add_dataframe(df2, filter.id)
 
-        self.assertEqual(len(saver.load_first_dataframe(-1)), 1)
+        self.assertEqual(len(saver.load_first_dataframe(filter.id)), 1)
 
         data = [
             {
@@ -127,15 +141,17 @@ class FilesManagerTest(TestCase):
 
         time.sleep(2)
 
-        saver.add_dataframe(df3, -1)
+        saver.add_dataframe(df3, filter.id)
 
-        self.assertEqual(len(saver.load_first_dataframe(-1)), 1)
+        self.assertEqual(len(saver.load_first_dataframe(filter.id)), 1)
 
     def test_2(self):
 
         for dirs in os.listdir(save_path):
             for files in os.listdir(save_path / dirs):
                 os.remove(save_path / dirs / files)
+
+        filter = self.createFilter()
 
         data = [
             {
@@ -154,9 +170,9 @@ class FilesManagerTest(TestCase):
 
         df = pd.DataFrame(data)
 
-        saver.add_dataframe(df, -1)
+        saver.add_dataframe(df, filter.id)
 
-        self.assertEqual(len(saver.load_first_dataframe(-1)), 1)
+        self.assertEqual(len(saver.load_first_dataframe(filter.id)), 1)
 
         time.sleep(2)
 
@@ -189,15 +205,17 @@ class FilesManagerTest(TestCase):
 
         df2 = pd.DataFrame(data)
 
-        saver.add_dataframe(df2, -1)
+        saver.add_dataframe(df2, filter.id)
 
-        self.assertEqual(len(saver.load_first_dataframe(-1)), 1)
+        self.assertEqual(len(saver.load_first_dataframe(filter.id)), 1)
 
     def test_3(self):
 
         for dirs in os.listdir(save_path):
             for files in os.listdir(save_path / dirs):
                 os.remove(save_path / dirs / files)
+
+        filter = self.createFilter()
 
         data = [
             {
@@ -216,9 +234,9 @@ class FilesManagerTest(TestCase):
 
         df = pd.DataFrame(data)
 
-        saver.add_dataframe(df, -1)
+        saver.add_dataframe(df, filter.id)
 
-        self.assertEqual(len(saver.load_first_dataframe(-1)), 1)
+        self.assertEqual(len(saver.load_first_dataframe(filter.id)), 1)
 
         time.sleep(2)
 
@@ -241,6 +259,6 @@ class FilesManagerTest(TestCase):
 
         time.sleep(2)
 
-        saver.add_dataframe(df2, -1)
+        saver.add_dataframe(df2, filter.id)
 
-        self.assertEqual(len(saver.load_first_dataframe(-1)), 1)
+        self.assertEqual(len(saver.load_first_dataframe(filter.id)), 1)

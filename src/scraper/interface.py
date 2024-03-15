@@ -18,7 +18,7 @@ def start_scraping(requests, nb_page):
     Returns:
         None
     """
-    if nb_page <= 0:
+    if nb_page < 0:
         raise ValueError("Le nombre de pages doit être supérieur à zéro.")
 
     try:

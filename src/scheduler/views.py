@@ -8,7 +8,7 @@ from scheduler import interface as scheduler
 def index(request):
     is_running = scheduler.is_running()
 
-    return render(request, "scheduler/scheduler.html", context={"is_running": is_running})
+    return render(request, "scheduler/index.html", context={"is_running": is_running})
 
 
 def stop_launch(request):

@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from MyVintedWizard.views import index
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', index, name="index"),
@@ -24,6 +25,8 @@ urlpatterns = [
     path('stats_calculator/', include("stats_calculator.urls")),
     path('scheduler/', include("scheduler.urls")),
     path('admin/', admin.site.urls),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
 
 from services import launch

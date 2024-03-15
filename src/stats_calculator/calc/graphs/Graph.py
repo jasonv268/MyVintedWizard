@@ -15,7 +15,6 @@ class Graph(ABC):
         self.colors = ['rgba(0, 0, 255, 1.0)', 'rgba(255, 0, 0, 1.0)', 'rgba(128, 0, 128, 1.0)', 'rgba(0, 128, 0, 1.0)',
                        'rgba(165, 42, 42, 1.0)']
         self.figure.update_layout(
-            title=name,
             autosize=True,
             legend=dict(
                 x=0,
@@ -42,7 +41,7 @@ class Graph(ABC):
                 l=0,  # left margin
                 r=0,  # right margin
                 b=0,  # bottom margin
-                t=2,  # top margin
+                t=0,  # top margin
             ),
             hovermode='closest',
             hoverlabel=dict(

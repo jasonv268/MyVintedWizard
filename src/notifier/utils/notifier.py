@@ -1,7 +1,7 @@
 from loguru import logger
 
 from filters_manager.models import Filter
-from discord_manager import interface as discordwh
+from discord_manager import interface as discordmg
 from notifier.utils.Notif import Notif
 from notifier.utils import helpers
 
@@ -20,6 +20,8 @@ def notify(ide, df):
 
 
 def send_all(df, notifier):
+    webhook = discordmg.add_sender(notifier.webhook_url)
+    discordmg.start_sender(webhook)
     for index, row in df.iterrows():
         if helpers.check_all(notifier, row):
             notif = Notif(row['username'], row['price'], row['likes'], row['size'], row['brand'], row['title'],
@@ -27,4 +29,6 @@ def send_all(df, notifier):
 
             logger.info(f"Notifier : Send {notif.serialize()}")
 
-            discordwh.send(notif.serialize())
+            discordmg.send(webhook, notif.serialize())
+
+    discordmg.stop_sender(webhook)
