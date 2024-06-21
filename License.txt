@@ -1,5 +1,5 @@
 /* Copyright (C) Vann' Corp, Inc - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
- * Written by Jason VANNIER vanncorp@protonmail.com, January 2024
+ * Written by Jason VANNIER and Baptiste Klempka vanncorp@protonmail.com, January 2024
  */
